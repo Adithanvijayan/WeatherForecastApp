@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>WeatherApp-Weather</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style type="text/css">
+#search
+	{
+		padding: 5px;
+  height: 30px;
+  width: 15cm;
+	}	
+	body
+	{
+		background-image: url('bg.jpg');
+		background-size: 100%;
+	}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="weather.html">WeatherApp</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="weather.html">weather</a></li>
+      <li><a href="crop.html">Crop</a></li>
+    </ul>
+  </div>
+</nav>
+	<center>
+		<br>
+		<h1 style="color: white;"><b>WeatherApp</b></h1>
+		<br>
+		<input type="text" class="form-control" id="search" placeholder="Find Your Location" onchange="search()">
+				<br><br>
+				<div class="container">
+					<div id="results" class="row"></div>
+				</div>
+	</center>
+</body>
+<script type="text/javascript">
+	function search()
+	{
+				let input = document.getElementById('search').value;	
+		console.log(input);
+		fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${input}&key=91eac4a9bce447a5823629a7f9903411`)
+		  .then(response => response.json())
+		  .then((data) => {
+		  	let output = ``;
+		  		console.log(data);
+		  		var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		  		// var d = new Date(data.data[0].datetime);
+		  		// var dayname = days[d.getDay()];
+		  		output+=`<div class="col-lg-3">
+		  		<div class="panel panel-danger">
+        <div class="panel-heading">Today</div>
+        <div class="panel-body"><img src="https://www.weatherbit.io/static/img/icons/${data.data[0].weather.icon}.png" class="img-responsive" alt="Image"><br><h2>${data.data[0].weather.description}</h2></div>
+        <div class="panel-footer">${data.data[0].temp}<sup>o</sup>C</div>
+      </div>	  		</div>`;
+      for(let i=1;i<=4;i++)
+      {
+      			 var d = new Date(data.data[i].datetime);
+		  		var dayname = days[d.getDay()];
+		  		output+=`<div class="col-lg-2">
+		  		<div class="panel panel-success">
+        <div class="panel-heading">${dayname}</div>
+        <div class="panel-body"><img src="https://www.weatherbit.io/static/img/icons/${data.data[i].weather.icon}.png" class="img-responsive" alt="Image"><br><p>${data.data[i].weather.description}</p></div>
+        <div class="panel-footer">${data.data[i].temp}<sup>o</sup>C</div>
+      </div>	  		</div>`;
+      }
+      		  document.getElementById('results').innerHTML = output;
+		  });
+	}
+</script>
+</html>

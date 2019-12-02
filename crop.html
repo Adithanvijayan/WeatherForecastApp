@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>WeatherApp-Crop</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+#search
+	{
+		padding: 5px;
+  height: 30px;
+  width: 15cm;
+	}	
+	body
+	{
+    color: white;
+				background-color: rgb(106, 151, 222);
+	}
+  #img
+  {
+      background-image: url('m.jpg');
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:100% 300px;
+  height:300px;
+  width:100%;
+          }
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="weather.html">WeatherApp</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="weather.html">weather</a></li>
+      <li class="active"><a href="crop.html">Crop</a></li>
+    </ul>
+  </div>
+<div id="img">
+  <div class="container">
+  <div class="row">
+    <div id="left" class="col-lg-4">
+      
+    </div>
+  </div>
+</div>
+</div>
+</nav>
+<center>
+      <input type="text" class="form-control" id="search" placeholder="Find Your Location" onchange="search()">
+        <br><br>
+        <div class="container">
+          <h1>Recent Crop Advisory</h1>
+          <div id="results"></div>
+        </div>
+</center>
+</body>
+<script type="text/javascript" src="data.json"></script>
+<script type="text/javascript">
+    function search()
+  {
+        let input = document.getElementById('search').value;  
+    console.log(input);
+    fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${input}&key=91eac4a9bce447a5823629a7f9903411`)
+      .then(response => response.json())
+      .then((data) => {
+        let left = ``;
+        let output = ``;
+          console.log(data);
+    document.getElementById('left').innerHTML = `<br><h1>${data.city_name}</h1>
+    <br><h3><i class="fa fa-thermometer"></i>&nbsp; ${data.data[0].min_temp}<sup>o</sup> min</h3>
+       <h3><i class="fa fa-thermometer"></i>&nbsp; ${data.data[0].max_temp}<sup>o</sup> max</h3>
+        <h2>${data.data[0].weather.description}</h2>`;
+        for(let i=0;i<city.length;i++)
+        {
+          if(city[i].name==data.city_name)
+          {
+            for(let j=0;j<city[i].crop.length;j++)
+            {
+              output+=`<img src="${city[i].crop[j].img}" width="50%" height="50%"><br><h2><b>${city[i].crop[j].name}</b></h2><br><br>`
+            }
+          }
+        }
+        document.getElementById('results').innerHTML = output;
+        });
+    }
+    console.log(city);
+</script>
+</html>

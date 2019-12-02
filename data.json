@@ -1,0 +1,60 @@
+city=
+	[
+		{
+			"name":"Chennai",
+			"crop":
+			[
+				{
+					"name":"Rice",
+					"img":"https://img.etimg.com/thumb/msid-68608193,width-300,imgsize-296241,resizemode-4/basmati-rice-agencies.jpg"
+				},
+
+				{
+					"name":"Cotton",
+					"img":"https://oecotextiles.files.wordpress.com/2010/06/cotton-boll.jpg"
+				},
+
+				{
+					"name":"Wheat",
+					"img":"https://georganics.in/wp-content/uploads/2018/09/wheat-grains.jpg"
+				},
+
+				{
+					"name":"Coconut",
+					"img":"http://cdn.shopify.com/s/files/1/0608/2413/products/Coconut_grande.jpg?v=1533828911"
+				}
+			]
+		},
+		{
+			"name":"Palakkad",
+			"crop":
+			[
+				{
+					"name":"Rice",
+					"img":"https://img.etimg.com/thumb/msid-68608193,width-300,imgsize-296241,resizemode-4/basmati-rice-agencies.jpg"
+				},
+
+				{
+					"name":"Ginger",
+					"img":"https://c.ndtvimg.com/kqob9f18_ginger-_625x300_20_August_18.jpg"
+				}
+
+			]
+		},
+		{
+			"name":"Agra",
+			"crop":
+			[
+				{
+					"name":"Wheat",
+					"img":"https://georganics.in/wp-content/uploads/2018/09/wheat-grains.jpg"
+				},
+
+				{
+					"name":"Ginger",
+					"img":"https://c.ndtvimg.com/kqob9f18_ginger-_625x300_20_August_18.jpg"
+				}
+
+			]
+		}
+	];
